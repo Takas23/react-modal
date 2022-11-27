@@ -3,6 +3,7 @@ import './App.css'
 import { Modalss } from './componentsTest/Modal'
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { FormWithHooks } from './componentsTest/form/FormWithHooks'
 
 function App() {
   const [modalI, setModalI] = useState()
@@ -36,14 +37,16 @@ function App() {
   return (
 
     <div className="App">
-      <button
+      {/* <button
         type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
         onClick={setModal}
       >
         Launch demo modal
       </button>
 
-      <Modalss />
+      <Modalss /> */}
+
+      <FormWithHooks/>
     </div>
   )
 }
