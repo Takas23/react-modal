@@ -1,12 +1,17 @@
+import { useState } from 'react'
 import { useForm } from './useForm'
 
 export const FormWithHooks = () => {
 
+
+
     // form custom hook
-    const { formState, onInputChange, dato1, dato2, dato3 } = useForm({
+    const { formState, listaObj, onInputChange, addObj, onSubmitForm } = useForm({
         dato1: '',
         dato2: '',
-        dato3: ''
+        dato3: '',
+        lista: [],
+        listaObj: []
     })
 
 
@@ -16,28 +21,51 @@ export const FormWithHooks = () => {
 
             <h1>formulario</h1>
 
-            <form onSubmit={console.log({formState})}>
-                <input
-                    type="text"
-                    name='dato1'
-                    value={dato1}
-                    onChange={onInputChange}
-                />
-                <input
-                    type="text"
-                    name='dato2'
-                    value={dato2}
-                    onChange={onInputChange}
-                />
-                <input
-                    type="text"
-                    name='dato3'
-                    value={dato3}
-                    onChange={onInputChange}
-                />
+            <form onSubmit={onSubmitForm}>
 
-            <input type="submit" />
+                {listaObj.map((obj) =>
+                    <div 
+                    key={`${listaObj.indexOf(obj)}Key`}
+                    id={`${listaObj.indexOf(obj)}Obj`}>
+                        <input
+                        id={`${listaObj.indexOf(obj)}Nombre`}
+                            type="text"
+                            name='Nombre'
+                            placeholder='Nombre'
+                            value={listaObj[listaObj.indexOf(obj).nombre]}
+                            onChange={onInputChange}
+                        />
+                        <input
+                         id={`${listaObj.indexOf(obj)}Apellido`}
+                            type="text"
+                            name='Apellido'
+                            placeholder='Apellido'
+                            value={listaObj[listaObj.indexOf(obj).apellido]}
+                            onChange={onInputChange}
+                        />
+                        <input
+                        id={`${listaObj.indexOf(obj)}Edad`}
+                            type="number"
+                            name='Edad'
+                            placeholder='Edad'
+                            value={listaObj[listaObj.indexOf(obj).edad]}
+                            onChange={onInputChange}
+                        />
+                        <button
+                        type='button'>
+                            X
+                        </button>
+                    </div>
+
+                )}
+
+
+                <br />
+                <button onClick={addObj}>agregar</button>
+                <br />
+
+                <input type="submit" />
             </form>
-        </div>
+        </div >
     )
 }
